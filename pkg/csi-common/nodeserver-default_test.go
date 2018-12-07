@@ -74,3 +74,29 @@ func TestNodeUnpublishVolume(t *testing.T) {
 	assert.True(t, ok)
 	assert.Equal(t, s.Code(), codes.Unimplemented)
 }
+
+func TestNodeStageVolume(t *testing.T) {
+	d := NewFakeDriver()
+
+	ns := NewDefaultNodeServer(d)
+
+	// Test invalid request
+	req := csi.NodeStageVolumeRequest{}
+	_, err := ns.NodeStageVolume(context.Background(), &req)
+	s, ok := status.FromError(err)
+	assert.True(t, ok)
+	assert.Equal(t, s.Code(), codes.Unimplemented)
+}
+
+func TestNodeUnstageVolume(t *testing.T) {
+	d := NewFakeDriver()
+
+	ns := NewDefaultNodeServer(d)
+
+	// Test invalid request
+	req := csi.NodeUnstageVolumeRequest{}
+	_, err := ns.NodeUnstageVolume(context.Background(), &req)
+	s, ok := status.FromError(err)
+	assert.True(t, ok)
+	assert.Equal(t, s.Code(), codes.Unimplemented)
+}
